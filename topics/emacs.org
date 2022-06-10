@@ -35,7 +35,7 @@
 *** First Things First
     Learn the basics. Take the Emacs tutorial  ~Ctrl-h t~ (aka =C-h t=). Consult the Psychotherapist when needed (under help menu). Play a game - try ~M-x tetris~ .
 ** Emacs is highly customizable
-   Just like linux distributions have package managers so does emacs. Usually your emacs customizations will be find in a /hidden/ directory (starts with a dot ('.') in your home directory. For example, =/home/britt/.emacs.d/=
+   Just like linux distributions have package managers so does emacs. Usually your emacs customizations will be found in a /hidden/ directory (starts with a dot ('.') in your home directory. For example, =/home/britt/.emacs.d/=
 *** Where is your "init" file
     Emacs tries to find an initialization file to see your customizations and what, if any, extra packages you may have installed. There are multiple places where it looks, and we want it to look in the right one. 
     Do ~C-x d~. This will display your current directory. The first line shows you where you are. Move up or down as needed to get to your home directory. Look for a file called ~.emacs~. Navigate to it by ~C-n~ and ~C-p~ to move up and down. When you find it and the cursor is on it. Type a capital ~D~. Then confirm the delete. Then ~C-x d~ and tab to =~/.emacs.d/=. Type a plus sign ~+~. For the name of the new file type ~init.el.~
@@ -46,7 +46,11 @@
     (add-to-list 'package-archives '("melpa" ."http://melpa.org/packages/") t)
     (package-initialize)
     #+end_src
-    Now we can look for packages by running ~M-x package-list-packages~ *However* it is better to use the ~use-package~ system. Of course, the challenge is to get this working in the first place, so we will use the above command to get =use-package= and then use =use-package= from then on. This will allow you to keep the names of all your packages and customizations in one place. Let's see how this would work with a couple of test packages. We want to put the above, and the following into your =init.el= file
+    Now we can look for packages by running ~M-x package-list-packages~
+*** Additional Tools for Package Management with Emacs
+    The easiest way to get started with Emacs packages is to install packages via the ~package-list-packages~. In that pane that opens up you can search for a package (using ~C-s~) and then type an "i" to install it.
+
+    As you become more comfortable with Emacs, if in fact you ever do, you might want to consider other ways to manage your package. I quite like [[https://suvratapte.com/configuring-emacs-from-scratch-use-package/][use-package]] as it allowed me to write down what packages and customizations I was using in a single place. Then I could use that file on a new computer to fairly easily get the same set-up. Here is an example of how one might use the =use-package= system:
 
     #+begin_src elisp :eval never :exports code
     (use-package elpy
@@ -57,8 +61,12 @@
     :ensure t
     )
     #+end_src
+
+    If you become even more expert you may want to manage and compile your emacs packages directly from source. For that you might want to manage packages with [[https://github.com/radian-software/straight.el][straight.el]]. This is definitely a more advanced package management system, and should wait until you feel comfortable using Emacs.
+
+    Lastly, there are Emacs bundles where someone has decided to create a system that uses Emacs and contains already configured a selection of emacs packages that play well together. Many people find these a nice help when getting started. If you decide you want to keep trying emacs after this course, but find it hard to get started, then one of these two options ([[https://www.spacemacs.org/][spacemacs]] ; [[https://github.com/doomemacs/doomemacs][doomemacs]] )might be worth a look. If you are the kind of person who likes books for learning, check out Mastering Emacs. 
 *** Program Your Editor
-    Emacs can be programmed with elisp code, it's own [[https://en.wikipedia.org/wiki/Lisp_(programming_language)][lisp]]. You can actually change the functions of your editor while using it. Usually, you don't really need to know elisp. You just need to have the confidence to cut and paste to the right location, usually our init.el file. 
+    Emacs can be programmed with elisp code, it's own [[https://en.wikipedia.org/wiki/Lisp_(programming_language)][lisp]]. You can actually change the functions of your editor while using it. Usually, you don't really need to know elisp. You just need to have the confidence to cut and paste to the right location, usually your init.el file. 
 **** An example: Turn off the tool bar.
      - To search for functions you can use the help ~C-h-f~. This will allow you to search for functions. Try the keyword menu and tab and see if you come across a likely contender (~menu-bar-showhide-tool-bar-menu-customize-disable~).
      - Navigate to the scratch buffer. Put that function in parantheses. Move to the end. Type ~C-x C-e~. Did your tool bar go away?
@@ -75,7 +83,7 @@
     6. What would you need to export a pdf?
        Try installing ~texlive-latex-base texlive-latex-extra~. If that doesn't work, repeat with ~texlive-latex-recommended~. If that doesn't fix the problem go with ~texlive-full~. This is big. Be patient.
 * Emacs Activity and Assessment
-  [[file:../assessments/emacsBeginningAssessment][Beginning Emacs Assessment]]
+  [[file:../assessments/emacsBeginningAssessment.org][Beginning Emacs Assessment]]
 * Footnotes
 
 [fn:1] https://www.emacswiki.org/emacs/EmacsHistory
